@@ -1,1 +1,4 @@
-
+#!/bin/bash
+echo "🚀 Starting YUKI CHATING..."
+pip install -r requirements.txt
+python main.py
