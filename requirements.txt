@@ -1,1 +1,11 @@
-
+fastapi
+uvicorn[standard]
+motor
+pymongo
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+httpx
+requests
+pydantic[email]
+python-multipart
