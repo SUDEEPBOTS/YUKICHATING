@@ -10,7 +10,7 @@ class Config:
     DB_NAME     = os.getenv("DB_NAME",     "YukiChating")
 
     # ── JWT ───────────────────────────────────────────────────────────────
-    JWT_SECRET  = os.getenv("JWT_SECRET",  "change_this_to_something_secret")
+    JWT_SECRET  = os.getenv("JWT_SECRET",  "YUKICHATINGS")
     JWT_EXPIRE  = int(os.getenv("JWT_EXPIRE", 72))   # hours
 
     # ── Email (Gmail SMTP) ────────────────────────────────────────────────
