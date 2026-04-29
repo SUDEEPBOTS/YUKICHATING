@@ -388,13 +388,13 @@ async def websocket_endpoint(ws: WebSocket, room_id: str, username: str):
 
     # Send current online list to the new user
     await ws.send_json({
-        "event":       "online_list",
-        "users":       manager.online_users(room_id),
+        "event": "online_list",
+        "users": manager.online_users(room_id),
     })
 
     try:
         while True:
-            data = await ws.receive_json()
+            data  = await ws.receive_json()
             event = data.get("event", "message")
 
             # ── PING ──────────────────────────────────────────────────────
@@ -455,6 +455,14 @@ async def websocket_endpoint(ws: WebSocket, room_id: str, username: str):
 
     except WebSocketDisconnect:
         manager.disconnect(room_id, username)
+
+        # ── Last seen update (Profile.py ke liye) ─────────────────────────
+        try:
+            from YUKICHATING.Plugins.profile.Profile import update_last_seen
+            await update_last_seen(username)
+        except Exception as e:
+            log.warning(f"[WS] last_seen update failed for {username}: {e}")
+
         await manager.broadcast(room_id, {
             "event":       "user_left",
             "username":    username,
@@ -466,4 +474,4 @@ async def websocket_endpoint(ws: WebSocket, room_id: str, username: str):
     except Exception as e:
         log.error(f"[WS] Error — {username} in {room_id}: {e}")
         manager.disconnect(room_id, username)
-  
+               
