@@ -3,7 +3,7 @@ services:
     name: yuki-chating
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: python3 -m YUKICHATING
     envVars:
       - key: MONGO_URI
         sync: false
