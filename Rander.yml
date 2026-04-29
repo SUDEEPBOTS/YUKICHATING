@@ -1,1 +1,21 @@
-
+services:
+  - type: web
+    name: yuki-chating
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SENDER_EMAIL
+        sync: false
+      - key: SENDER_PASSWORD
+        sync: false
+      - key: CLOUDFLARE_SECRET_KEY
+        sync: false
+      - key: DB_NAME
+        value: YukiChating
+      - key: DEBUG
+        value: false
