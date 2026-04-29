@@ -1,0 +1,10 @@
+__pycache__/
+venv/
+.env
+database/
+downloads/
+cache/
+*.session
+*.session-journal
+log.txt
+node_modules/
